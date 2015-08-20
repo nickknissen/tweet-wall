@@ -1,0 +1,15 @@
+web:
+  build: .
+  volumes:
+    - .:/code
+  ports:
+    - "80:5000"
+  links:
+    - mongodb
+  environment:
+    TW_MONGODB_DB: "vuls-twitter-wall"
+    TW_MONGODB_HOST: mongodb
+  command: python run.py
+mongodb:
+  image: mongo:3.0.5
+  command: mongod --smallfiles

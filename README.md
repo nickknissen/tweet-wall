@@ -8,6 +8,7 @@ I want to learn more about:
 * websockets
 * docker
 * docker compose
+* celery
 
 
 #### TODO:

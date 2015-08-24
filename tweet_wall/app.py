@@ -1,9 +1,21 @@
 # -*- coding: utf-8 -*-
 import os
+import json
 from flask import Flask
-from flask_mongoengine import MongoEngine
+from .extensions import db
+from . import model
 
-db = MongoEngine()
+
+def load_test_tweets_if_empty():
+    if model.Tweet.objects.count() != 0:
+        return
+
+    with open('./twitter_mock.json') as f:
+        tweet_data = json.load(f)
+
+    for tweet in tweet_data["statuses"]:
+        tweet.pop("id")
+        model.Tweet(**tweet).save()
 
 
 def create_app(config=None):
@@ -14,7 +26,10 @@ def create_app(config=None):
 
     db.init_app(app)
 
+    load_test_tweets_if_empty()
+
     @app.route("/")
     def hello():
-        return app.config
+        tweets = model.Tweet.objects.only("text").all().to_json()
+        return "<pre>" + tweets + "</pre>"
     return app

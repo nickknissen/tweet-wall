@@ -1,0 +1,51 @@
+body {
+	background: url("/static/bg.jpg");
+	font-family: Georgia, serif;
+	font-size: 2vw;
+}
+
+.tweetwall {
+	width: 100%;
+	float:right;
+}
+
+.tweetwall ol {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.tweet {
+	background-color: white;
+	padding: 1.3vw;
+	margin-bottom: 30px;
+	display: block;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),0 3px 1px -2px rgba(0, 0, 0, 0.2),0 1px 5px 0 rgba(0, 0, 0, 0.12)
+}
+
+.tweet .profile-image {
+	width: 9.5vw;
+	float: left;
+	padding-right: 20px;
+	position: relative;
+	box-sizing: border-box;
+}
+.tweet .content {
+	width: 80%;
+	float: left;
+	position: relative;
+	box-sizing: border-box;
+}
+.tweet .content .title {
+	margin-top: -8px;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

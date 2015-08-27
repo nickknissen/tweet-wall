@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title>VU TWEET WALL</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<div class="schedule"></div>
+		<div class="tweetwall">
+			<ol>
+				{% for tweet in tweets %}
+					<li>
+						<div class="tweet cf">
+							<img class="profile-image" src="{{tweet.user.profile_image_url | twitter_normal_to_bigger}}">
+							<div class="content">
+								<div class="title">
+									<strong>{{ tweet.user.name }}</strong> <small>@{{ tweet.user.screen_name }}</small>
+								</div>
+								<div class="text">
+									{{ tweet.text }}
+								</div>
+							</div>
+
+						</div>
+					</li>
+				{% else %}
+					<li><em>There are no tweets</em></li>
+				{% endfor %}
+			</ol>
+		<div>
+	</body>
+</html>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
-from flask import Flask
+from flask import Flask, render_template
 from .extensions import db
 from . import model
 
@@ -15,7 +15,12 @@ def load_test_tweets_if_empty():
 
     for tweet in tweet_data["statuses"]:
         tweet.pop("id")
+        tweet["approved"] = False
         model.Tweet(**tweet).save()
+
+
+def twitter_normal_to_bigger(value):
+    return value.replace("_normal.", ".")
 
 
 def create_app(config=None):
@@ -26,10 +31,13 @@ def create_app(config=None):
 
     db.init_app(app)
 
+    app.jinja_env.filters['twitter_normal_to_bigger'] = twitter_normal_to_bigger
+
     load_test_tweets_if_empty()
 
     @app.route("/")
-    def hello():
-        tweets = model.Tweet.objects.only("text").all().to_json()
-        return "<pre>" + tweets + "</pre>"
+    def wall():
+        tweets = model.Tweet.objects(approved=True).all()
+        return render_template('layout.html', tweets=tweets)
+
     return app

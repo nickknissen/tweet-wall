@@ -39,13 +39,16 @@ body {
 .tweet .content .title {
 	margin-top: -8px;
 }
+.tweet .content .title small{
+	color: #808080;
+}
 
 .cf:before,
 .cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+	content: " "; /* 1 */
+	display: table; /* 2 */
 }
 
 .cf:after {
-    clear: both;
+	clear: both;
 }

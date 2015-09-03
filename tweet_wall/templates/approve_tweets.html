@@ -4,13 +4,17 @@
 		<title>VU TWEET WALL</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	</head>
-	<body class="twitter-wall main">
-		<div class="schedule"></div>
+	<body class="twitter-wall approve">
+		<div class="actions"></div>
 		<div class="tweets">
 			<ol>
 				{% for tweet in tweets %}
-					<li>
-						<div class="tweet cf">
+					<li class="cf">
+						<div class="approve-action">
+							<img class="thumbs" src="/static/thumbs-up-dark.png">
+							<img class="hexagon" src="/static/hexagon.png">
+						</div>
+						<div class="tweet">
 							<img class="profile-image" src="{{tweet.user.profile_image_url | twitter_normal_to_bigger}}">
 							<div class="content">
 								<div class="title">

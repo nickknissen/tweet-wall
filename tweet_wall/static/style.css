@@ -4,14 +4,6 @@ body {
 	font-size: 2vw;
 }
 
-.twitter-wall.main .tweets {
-	width: 100%;
-}
-
-.twitter-wall.approve .tweets {
-	width: 100%;
-}
-
 .tweets {
 	float:right;
 }
@@ -22,50 +14,70 @@ body {
 	margin: 0;
 }
 
-.tweet {
+.approve-form {
 	display: inline-block;
-	float: right;
-	width: 86%;
-	background-color: white;
-	padding: 1.3vw;
-	margin-bottom: 2.1vw;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),0 3px 1px -2px rgba(0, 0, 0, 0.2),0 1px 5px 0 rgba(0, 0, 0, 0.12)
+	width: 10%;
 }
 
-.approve-action {
+.approve-form .approve-action {
 	width: 10%;
 	display: inline-block;
 	position: relative;
 	margin-bottom: 2.2vw
 }
-.approve-action .hexagon{
+
+.approve-form .approve-action .hexagon{
 	position: absolute;
 	z-index: 5;
 	width: 9vw;
 }
-.approve-action .thumbs{
+
+.approve-form .approve-action .thumbs{
 	position: absolute;
 	z-index: 10;
 	width: 5.2vw;
 	margin: 1.8vw;
 }
 
-.tweet .profile-image {
-	width: 9.5vw;
+.tweet {
+	display: inline-block;
+	float: right;
+	background-color: white;
+	padding: 1.3vw;
+	margin-bottom: 2.1vw;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),0 3px 1px -2px rgba(0, 0, 0, 0.2),0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	width: 97%;
+
+}
+
+.twitter-wall.approve .tweet {
+	width: 86%;
+}
+
+.tweet .profile-image-container {
 	float: left;
 	padding-right: 20px;
 	position: relative;
 	box-sizing: border-box;
+	overflow: hidden;
+	height: 7.5vw;
 }
+
+.tweet .profile-image-container img {
+	width: 7.5vw;
+}
+
 .tweet .content {
 	width: 80%;
 	float: left;
 	position: relative;
 	box-sizing: border-box;
 }
+
 .tweet .content .title {
 	margin-top: -8px;
 }
+
 .tweet .content .title small{
 	color: #808080;
 }

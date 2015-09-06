@@ -1,17 +1,11 @@
 {% extends "base.html" %}
-{% block bodyClass %}approve{% endblock %}
+{% block bodyClass %}main{% endblock %}
 {% block body %}
 	<div class="schedule"></div>
 	<div class="tweets">
 		<ol>
 			{% for tweet in tweets %}
 				<li class="cf">
-					<form name="approve-form" action="/approve/{{ tweet.id_str }}" method="POST" class="approve-form">
-						<div class="approve-action">
-							<input type="image" class="thumbs" src="/static/thumbs-up-dark.png">
-							<img class="hexagon" src="/static/hexagon.png">
-						</div>
-					</form>
 					<div class="tweet">
 						<div class="profile-image-container">
 							<img  src="{{tweet.user.profile_image_url | twitter_normal_to_bigger}}">
@@ -21,7 +15,9 @@
 								<strong>{{ tweet.user.name }}</strong>
 								<small>@{{ tweet.user.screen_name }}</small>
 							</div>
-							<div class="text">{{ tweet.text }}</div>
+							<div class="text">
+								{{ tweet.text }}
+							</div>
 						</div>
 					</div>
 				</li>
@@ -29,5 +25,5 @@
 				<li><em>There are no tweets</em></li>
 			{% endfor %}
 		</ol>
-	<div>
+	</div>
 {% endblock %}

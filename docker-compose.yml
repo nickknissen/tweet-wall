@@ -6,6 +6,7 @@ web:
     - /usr/src/app/static
   links:
     - mongodb
+  env_file: .env
   environment:
     TW_MONGODB_DB: "tweet_wall"
     TW_MONGODB_HOST: mongodb

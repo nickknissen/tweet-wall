@@ -1,4 +1,1 @@
-FROM python:3.4.3
-ADD . /code
-WORKDIR /code
-RUN pip install -r requirements.txt
+FROM python:3.5-onbuild

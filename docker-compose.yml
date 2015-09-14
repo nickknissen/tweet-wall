@@ -1,9 +1,9 @@
 web:
   build: .
-  volumes:
-    - .:/code
   ports:
     - "80:5000"
+  volumes:
+    - /usr/src/app/static
   links:
     - mongodb
   environment:

@@ -2,10 +2,11 @@
 import os
 
 from flask import Flask, render_template, redirect, url_for, request
-from twitter import *
+from twitter import Twitter, OAuth2, read_bearer_token_file
 
 from .extensions import db
 from . import model
+from .decorators import requires_auth
 
 
 def twitter_normal_to_bigger(value):
@@ -15,8 +16,7 @@ def twitter_normal_to_bigger(value):
 def _get_hash_tag_query_param():
     hash_tag = request.args.get("hash_tag")
     if hash_tag is None:
-        hash_tag = "#emkval"
-
+        hash_tag = "#vuls15"
     return hash_tag
 
 
@@ -33,11 +33,14 @@ def create_app(config=None):
     twitter = Twitter(auth=OAuth2(bearer_token=token))
 
     @app.route("/approved")
+    @app.route("/index")
+    @app.route("/")
     def approved_tweets():
         tweets = model.Tweet.objects(approved=True).order_by("-id_str").all()
         return render_template('public.html', tweets=tweets)
 
     @app.route("/approve", methods=["GET"])
+    @requires_auth
     def approve_tweet_get():
         hash_tag = _get_hash_tag_query_param()
         tweets_twitter = twitter.search.tweets(q=hash_tag)["statuses"]
@@ -52,6 +55,7 @@ def create_app(config=None):
                                tweets=tweets_not_approved)
 
     @app.route("/approve/<string:id_str>", methods=["POST"])
+    @requires_auth
     def approve_tweet_post(id_str):
         tweet = twitter.statuses.show(id=id_str)
         tweet["approved"] = True

@@ -11,8 +11,7 @@ web:
     TW_MONGODB_DB: "tweet_wall"
     TW_MONGODB_HOST: mongodb
   command: python run.py
+
 mongodb:
-  ports:
-    - "27017:27017"
   image: mongo:3.0.5
   command: mongod --smallfiles --nojournal --noprealloc

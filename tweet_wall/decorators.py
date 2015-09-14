@@ -7,8 +7,8 @@ def _check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return (username == os.getenv('HTTP_ADMIN_USER')
-            and password == os.getenv('HTTP_ADMIN_PASSWD'))
+    return (username == os.getenv('TW_HTTP_ADMIN_USER')
+            and password == os.getenv('TW_HTTP_ADMIN_PASSWD'))
 
 
 def _authenticate():
